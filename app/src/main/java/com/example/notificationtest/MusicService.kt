@@ -19,7 +19,7 @@ class MusicService: Service() {
     override fun onCreate() {
         super.onCreate()
         mediaPlayer = MediaPlayer.create(this, R.raw.ringtone)
-        mediaPlayer.setLooping(false)
+        mediaPlayer.setLooping(true)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
