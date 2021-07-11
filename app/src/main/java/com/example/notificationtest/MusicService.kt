@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.media.MediaPlayer
+import android.os.Binder
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 
@@ -14,7 +15,7 @@ import androidx.core.app.NotificationCompat
  */
 class MusicService: Service() {
     private lateinit var mediaPlayer: MediaPlayer
-    private val NOTIFICATION_REQ_CODE = 0
+    private val binder = LocalBinder()
 
     override fun onCreate() {
         super.onCreate()
@@ -22,25 +23,8 @@ class MusicService: Service() {
         mediaPlayer.setLooping(true)
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    fun startMusicBoundService() {
         mediaPlayer.start()
-
-        val notificationIntent: Intent = Intent(this, MainActivity::class.java)
-        val pendingIntent: PendingIntent = PendingIntent
-            .getActivity(this, NOTIFICATION_REQ_CODE, notificationIntent, 0)
-
-        val notification: Notification = NotificationCompat
-            .Builder(
-                this,
-                resources.getString(R.string.notification_channel_id)
-            )
-            .setContentTitle("Music Foreground Service")
-            .setSmallIcon(R.drawable.ic_launcher_background)
-            .setContentIntent(pendingIntent)
-            .build()
-
-        startForeground(1, notification)
-        return START_NOT_STICKY
     }
 
     override fun onDestroy() {
@@ -49,7 +33,13 @@ class MusicService: Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder? {
-        //returning null for now
-        return null;
+        //this binder object comes as an argument in
+        //onServiceConnected()
+        return binder
+    }
+
+    inner class LocalBinder: Binder() {
+        // Return this instance of MusicService so clients can call public methods
+        fun getMusicService(): MusicService = this@MusicService
     }
 }
