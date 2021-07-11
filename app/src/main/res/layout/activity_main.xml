@@ -9,39 +9,6 @@
         tools:context=".MainActivity">
 
         <Button
-            android:id="@+id/startForegroundStartedService"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/start_music_started"
-            app:layout_constraintBottom_toTopOf="@id/endForegroundStartedService"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <Button
-            android:id="@+id/endForegroundStartedService"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stop_music_started"
-            app:layout_constraintBottom_toTopOf="@id/space"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/startForegroundStartedService" />
-        
-        <Space
-            android:id="@+id/space"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/space_height"
-            app:layout_constraintTop_toBottomOf="@id/endForegroundStartedService"
-            app:layout_constraintBottom_toTopOf="@id/startBoundService"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"/>
-
-        <Button
             android:id="@+id/startBoundService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +17,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/space" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/endBoundService"
